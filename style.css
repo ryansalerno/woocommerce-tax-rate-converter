@@ -1,0 +1,146 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+* + * {
+	margin-top: 1.5em;
+}
+
+html {
+	background-color: #2b2b2b;
+	color: #fff;
+	font-size: 1em;
+	line-height: 1.5;
+	min-height: 100vh;
+}
+
+body {
+	margin: 0;
+	padding-top: 3em;
+	font-size: 1rem;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+header,
+main,
+footer div {
+	max-width: 50em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+ol {
+	margin-left: 3em;
+}
+
+code {
+	background-color: rgba(0,0,0,.2);
+	padding: .375rem .75rem;
+	font-size: .75rem;
+}
+
+main {
+	width: 100%;
+	flex: 1 0 0%;
+}
+
+a {
+	color: springgreen;
+	transition: color .2s linear;
+}
+a:hover,
+a:focus {
+	color: cyan;
+}
+
+form {
+	max-width: 80%;
+	margin: 1.5em auto 0;
+}
+
+label {
+	display: block;
+}
+
+input, textarea, select {
+	display: block;
+	width: 100%;
+	background-color: transparent;
+	border: 1px solid #999;
+	border-radius: 0;
+	padding: 1em;
+	color: inherit;
+}
+
+input:focus, textarea:focus, select:focus {
+	border-color: #fff;
+}
+
+textarea {
+	resize: vertical;
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: #2b2b2b url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' preserveAspectRatio='xMaxYMid'%3E%3Cpath fill='none' stroke='%23fff' d='M2 6l10 12L22 6'/%3E%3C/svg%3E") 100% no-repeat;
+	background-size: auto 60%;
+	background-position: calc(100% - .5em) 50%;
+	padding-right: 3em;
+	margin-top: 1.5em;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+option {
+	margin-left: .75rem;
+}
+
+button {
+	position: relative;
+	background: springgreen;
+	color: #1b1b1b;
+	border: 0;
+	border-radius: .375em;
+	padding: .75rem 1.5rem;
+	cursor: pointer;
+	width: auto;
+	transition: background-color .2s linear;
+}
+button::after {
+	content: "🧮";
+	font-size: 2em;
+	margin-left: 3rem;
+	position: absolute;
+	top: 50%;
+	z-index: -1;
+	transform: translate(-100%, -50%);
+	opacity: 0;
+	transition: opacity .1s ease-out, transform .2s linear;
+}
+button:hover {
+	background: cyan;
+}
+button:hover::after {
+	transform: translate(0, -50%);
+	opacity: 1;
+}
+
+aside {
+	background-color: #666;
+	padding: .75em 1.5em;
+}
+
+footer {
+	background-color: #1b1b1b;
+	padding: .75em;
+	text-align: right;
+}
