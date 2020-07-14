@@ -46,6 +46,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' && ! empty( $_FILES['avalara-csv'] ) 
 					<option value="zip">Sales Tax: 90210</option>
 				</select>
 			</label>
+			<label><input type="checkbox" name="combine-rates" checked/> Combine equal rates to a single row</label>
 			<button type="submit">Go</button>
 		</form>
 	</main>
@@ -72,6 +73,10 @@ function process_csv() {
 	$rows = array();
 	foreach ( $_FILES['avalara-csv']['tmp_name'] as $file ) {
 		$rows = array_merge( $rows, parse_file( $file ) );
+	}
+
+	if ( $_POST['combine-rates'] ) {
+		$rows = combine_rates( $rows );
 	}
 
 	$converted = translate( $rows );
@@ -154,6 +159,27 @@ function tax_name( $data ) {
 	}
 
 	return $name;
+}
+
+function combine_rates( $array ) {
+	$combined = array();
+
+	foreach ( $array as $row ) {
+		// the key will be ignored, so this just gets us a level of uniqueness
+		$key = $row['State'] . $row['EstimatedCombinedRate'];
+		// the results could be compacted further by also combining states,
+		// but there's some usefulness in this separation
+
+		if ( ! empty( $combined[$key]['ZipCode'] ) ) {
+			$combined[$key]['ZipCode'] .= ';' . $row['ZipCode'];
+			// WC allows wildcards and ranges, but this is simpler and still
+			// allows for searching for a zipcode in the table for debugging
+		} else {
+			$combined[$key] = $row;
+		}
+	}
+
+	return $combined ? $combined : $array;
 }
 
 // https://stackoverflow.com/a/36559772

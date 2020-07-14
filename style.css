@@ -104,6 +104,13 @@ option {
 	margin-left: .75rem;
 }
 
+input[type="checkbox"],
+input[type="radio"] {
+	display: inline-block;
+	width: auto;
+	transform: translateY(.125em);
+}
+
 button {
 	position: relative;
 	background: springgreen;
