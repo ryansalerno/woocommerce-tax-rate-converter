@@ -101,7 +101,7 @@ function parse_file( $pointer ) {
 }
 
 function is_avalara_csv( $h ) {
-	$required_keys = array( 'State', 'ZipCode', 'TaxRegionName', 'EstimatedCombinedRate' );
+	$required_keys = array( 'State', 'ZipCode', 'EstimatedCombinedRate' );
 
 	return empty( array_diff( $required_keys, $h ) );
 }
@@ -115,7 +115,7 @@ function translate( $array ) {
 			'US',
 			$row['State'],
 			$row['ZipCode'],
-			$row['TaxRegionName'],
+			'',
 			$row['EstimatedCombinedRate'] * 100,
 			tax_name( $row ),
 			1,
